@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # 3rd Party
     "crispy_forms",
     "crispy_bootstrap5",
+    "secretballot",
+    "likes",
     # Local
     "accounts",
     "pages",
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "likes.middleware.SecretBallotUserIpUseragentMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -137,3 +140,7 @@ LOGOUT_REDIRECT_URL = "home"  # new
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"  # new
 CRISPY_TEMPLATE_PACK = "bootstrap5"  # new
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # new
+
+SECRETBALLOT_FOR_MODELS = {
+    "articles.Article": {},
+}

@@ -7,7 +7,16 @@ from django.urls import reverse_lazy, reverse  # new
 
 from .forms import CommentForm
 from .models import Article
+from django.template import RequestContext
 
+class LikeGet(DetailView):
+    model = Article
+    template_name = "article_detail.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_liked'] = self.request.user.has_liked(self.object)
+        return context
 
 class ArticleListView(LoginRequiredMixin, ListView):  # new
     model = Article
